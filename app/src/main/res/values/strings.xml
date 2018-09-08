@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Weather App Tutorial</string>
+
+    <!-- Хорошей практикой является заведение отдельных значений для одинаковых текстов -->
+    <string name="change_city">Change city</string>
+    <string name="change_city_dialog">Change city</string>
+
+    <string name="weather_sunny">&#xf00d;</string>
+    <string name="weather_clear_night">&#xf02e;</string>
+    <string name="weather_foggy">&#xf014;</string>
+    <string name="weather_cloudy">&#xf013;</string>
+    <string name="weather_rainy">&#xf019;</string>
+    <string name="weather_snowy">&#xf01b;</string>
+    <string name="weather_thunder">&#xf01e;</string>
+    <string name="weather_drizzle">&#xf01c;</string>
+    <string name="place_not_found">Sorry, no weather data found.</string>
+
+    <!-- APP ID вашего аккаунта на сайте погоды: бесплатен -->
+    <!-- Но приложение запускается и без ключа, но и без данных -->
+    <string name="open_weather_maps_app_id">ac8e27ae2dc7a85df994b9c9b6293ea8</string>
+</resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Базовый интерфейс приложения, по сути - контейнер для интерфейса -->
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container_for_fragment"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/screen_background_color" />
