@@ -43,16 +43,6 @@
         android:textSize="@dimen/icon_front_size" />
 
     <TextView
-        android:id="@+id/current_temperature_field"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:text="wer"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="@dimen/temperature_font_size" />
-
-    <TextView
         android:id="@+id/details_field"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -60,5 +50,28 @@
         android:layout_centerHorizontal="true"
         android:text="wer"
         android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/current_temperature_field"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/details_field"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_centerHorizontal="true"
+        android:text="wer"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="@dimen/temperature_font_size" />
+
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/ok"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="@dimen/updated_font_size" />
+
+
 
 </RelativeLayout>

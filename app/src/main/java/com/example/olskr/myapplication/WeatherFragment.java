@@ -34,6 +34,7 @@ public class WeatherFragment extends Fragment {
     private TextView detailsTextView;
     private TextView currentTemperatureTextView;
     private TextView weatherIcon;
+    private TextView status;
 
 
     //Callback при создании класса (Жизненный цикл Фрагмента)
@@ -49,11 +50,12 @@ public class WeatherFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_weather, container, false);
-        cityTextView = (TextView) rootView.findViewById(R.id.city_field);
-        updatedTextView = (TextView) rootView.findViewById(R.id.updated_field);
-        detailsTextView = (TextView) rootView.findViewById(R.id.details_field);
-        currentTemperatureTextView = (TextView) rootView.findViewById(R.id.current_temperature_field);
-        weatherIcon = (TextView) rootView.findViewById(R.id.weather_icon);
+        cityTextView = rootView.findViewById(R.id.city_field);
+        updatedTextView = rootView.findViewById(R.id.updated_field);
+        detailsTextView = rootView.findViewById(R.id.details_field);
+        currentTemperatureTextView = rootView.findViewById(R.id.current_temperature_field);
+        weatherIcon = rootView.findViewById(R.id.weather_icon);
+        status = rootView.findViewById(R.id.status);
 
         weatherIcon.setTypeface(weatherFont);
         return rootView;
@@ -62,27 +64,30 @@ public class WeatherFragment extends Fragment {
     //Обновление/загрузка погодных данных
     //тут рекомендуеться отображать процесс загрузки
     private void updateWeatherData(final String city) {
-        new Thread() {
-            public void run() {
-                final JSONObject json = WeatherDataLoader.getJSONData(getActivity(), city);
+        // Создадим объект класса делателя запросов и налету сделаем анонимный класс слушателя
+        final RequestMaker requestMaker = new RequestMaker(new RequestMaker.OnRequestListener() {
+            // Обновим прогресс
+            @Override
+            public void onStatusProgress(String updateProgress) {
+                status.setText(updateProgress);
+            }
+            // по окончании загрузки страницы вызовем этот метод, который и вставит текст в WebView
+            @Override
+            public void onComplete(JSONObject json) {
+
+
+//                final JSONObject json = WeatherDataLoader.getJSONData(getActivity(), city);
                 if (json == null) {
-                    //работаем через handler, чтобы не получить ошибку
-                    handler.post(new Runnable() {
-                        public void run() {
-                            Toast.makeText(getActivity(), getActivity().getString(R.string.place_not_found),
-                                    Toast.LENGTH_LONG).show();
-                            Log.d(LOG_TAG, "ERROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOR");
-                        }
-                    });
-                } else {
-                    handler.post(new Runnable() {
-                        public void run() {
-                            renderWeather(json);
-                        }
-                    });
+                    Toast.makeText(getActivity(), getActivity().getString(R.string.place_not_found),
+                            Toast.LENGTH_LONG).show();
+                    Log.d(LOG_TAG, "ERROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOR");
+                }else{
+                    renderWeather(json);
                 }
             }
-        }.start();
+        });
+
+        requestMaker.make(city);
     }
 
     //Обработка загруженных данных

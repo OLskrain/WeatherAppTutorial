@@ -4,6 +4,7 @@
     <!-- Хорошей практикой является заведение отдельных значений для одинаковых текстов -->
     <string name="change_city">Change city</string>
     <string name="change_city_dialog">Change city</string>
+    <string name="ok">OK</string>
 
     <string name="weather_sunny">&#xf00d;</string>
     <string name="weather_clear_night">&#xf02e;</string>
