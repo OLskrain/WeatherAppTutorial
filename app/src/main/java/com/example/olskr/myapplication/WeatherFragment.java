@@ -25,7 +25,6 @@ public class WeatherFragment extends Fragment {
     //Классовые переменные
     private static final String LOG_TAG = "WeatherFragment";
     private static final String FONT_FILENAME = "fonts/weather.ttf";
-    private final Handler handler = new Handler();
 
     //Реализация иконок погоды через шрифт (но можно и через setImageDrawable)
     private Typeface weatherFont;
@@ -74,9 +73,6 @@ public class WeatherFragment extends Fragment {
             // по окончании загрузки страницы вызовем этот метод, который и вставит текст в WebView
             @Override
             public void onComplete(JSONObject json) {
-
-
-//                final JSONObject json = WeatherDataLoader.getJSONData(getActivity(), city);
                 if (json == null) {
                     Toast.makeText(getActivity(), getActivity().getString(R.string.place_not_found),
                             Toast.LENGTH_LONG).show();
